@@ -18,7 +18,8 @@ jobs:
           echo ${planCommentsURL}
           echo "after comment"
           curl -s -f -S \
+          --request GET \
           --url ${planCommentsURL} \
           --header 'authorization: Bearer ${{secrets.ACTION_CLI_EXAMPLE}}' \
-          --header 'content-type: application/json, \
+          --header 'content-type: application/json' \
           
