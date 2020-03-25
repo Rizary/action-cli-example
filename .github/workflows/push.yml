@@ -17,6 +17,6 @@ jobs:
           --request POST \
           --header 'authorization: token ${{secrets.ACTION_CLI_EXAMPLE}}' \
           --header 'content-type: application/json' \
-          --data '{ "title": "Automated comment for PR", "Body": "Thank you for the PR" }' 
+          --data '{ "title": "Automated comment for PR", "Body": "Thank you for the PR" }' \ 
           --url ${planCommentsURL} \
                    
