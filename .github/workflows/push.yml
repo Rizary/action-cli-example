@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: rizary/action-cli@v0.4.0
-      - run: action-cli warning --file Cargo.toml --line 2 --col 2 "Ooops"
+      - run: cat $GITHUB_EVENT_PATH
