@@ -1,9 +1,6 @@
 name: "CI"
 on:
   pull_request:
-  push:
-    branches:
-      - master
 jobs:
   self-test:
     name: Self test
@@ -16,10 +13,10 @@ jobs:
           planCommentsURL=$(jq -r .pull_request.comments_url < "$GITHUB_EVENT_PATH")
           echo "plan: info: commenting on the pull request"
           echo ${planCommentsURL}
-          echo "after comment"
-          curl -s -f -S \
-          --request GET \
+          echo "Hello world" | \
+          curl -s -f -S --data @- \
+          --request POST \
           --url ${planCommentsURL} \
           --header 'authorization: Bearer ${{secrets.ACTION_CLI_EXAMPLE}}' \
-          --header 'content-type: application/json' \
+          --header 'content-type: application/json' > /dev/null
           
