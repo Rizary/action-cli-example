@@ -15,8 +15,11 @@ jobs:
           echo ${planCommentsURL}
           curl -s -f -S \
           --request POST \
-          --header 'authorization: token ${{secrets.ACTION_CLI_EXAMPLE}}' \
+          --url ${planCommentsURL} \
+          --header 'authorization: Bearer ${{secrets.ACTION_CLI_EXAMPLE}}' \
           --header 'content-type: application/json' \
-          --data '{ "title": "Automated comment for PR", "Body": "Thank you for the PR" }' \ 
-          --url '${planCommentsURL}' \
+          --data '{
+            "title": "Automated comment for PR",
+            "Body": "Thank you for the PR"
+            }' 
                    
