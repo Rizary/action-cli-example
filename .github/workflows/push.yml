@@ -17,5 +17,8 @@ jobs:
           echo "plan: info: commenting on the pull request"
           echo ${planCommentsURL}
           echo "after comment"
-          echo "${planPayload}" | curl -s -f -S -H "Authorization: Bearer ${{secrets.ACTION_CLI_EXAMPLE}}" --header "Content-Type: application/json" --data @- "${planCommentsURL}" > /dev/null
+          curl -s -f -S \
+          --url ${planCommentsURL} \
+          --header 'authorization: Bearer ${{secrets.ACTION_CLI_EXAMPLE}}' \
+          --header 'content-type: application/json, \
           
