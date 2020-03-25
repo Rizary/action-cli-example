@@ -1,0 +1,5 @@
+* Action-cli Example repository
+
+This repository is created for ongoing development on [action-cli](https://github.com/numtide/action-cli).
+
+
