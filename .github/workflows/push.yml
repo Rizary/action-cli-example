@@ -11,3 +11,4 @@ jobs:
     steps:
       - uses: rizary/action-cli@v0.4.0
       - run: cat $GITHUB_EVENT_PATH
+      - run: ./ci.sh
