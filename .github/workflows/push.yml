@@ -13,5 +13,9 @@ jobs:
           planCommentsURL=$(jq -r .pull_request.comments_url < "$GITHUB_EVENT_PATH")
           echo "plan: info: commenting on the pull request"
           echo ${planCommentsURL}
-          curl -s -S -H "Authorization: token ${{secrets.ACTION_CLI_EXAMPLE}}" --header "Content-Type: application/json" --data '{"body": "Hello World"}' "${planCommentsURL}" > /dev/null
+          curl -s -S -f \
+          --header "authorization: token ${{secrets.ACTION_CLI_EXAMPLE}}" \
+          --header "Content-Type: application/json" \
+          --data '{"body": "Hello World"}' \
+          --url "${planCommentsURL}" > /dev/null
                    
