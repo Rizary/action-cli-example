@@ -1,13 +1,21 @@
 name: "CI"
 on:
   pull_request:
-  push:
-    branches:
-      - master
 jobs:
   self-test:
     name: Self test
     runs-on: ubuntu-latest
     steps:
       - uses: rizary/action-cli@v0.4.0
-      - run: action-cli warning --file Cargo.toml --line 2 --col 2 "Ooops"
+      - run: cat $GITHUB_EVENT_PATH
+      - shell: bash
+        run: |
+          planCommentsURL=$(jq -r .pull_request.comments_url < "$GITHUB_EVENT_PATH")
+          echo "plan: info: commenting on the pull request"
+          echo ${planCommentsURL}
+          curl -s -S -f \
+          --header "authorization: token ${{secrets.ACTION_CLI_EXAMPLE}}" \
+          --header "Content-Type: application/json" \
+          --data '{"body": "Hello World"}' \
+          --url "${planCommentsURL}" > /dev/null
+                   
